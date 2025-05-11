@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Auguste VANIER - Page personnelle</title>
+  <style>
+    slide {
+	    animation-duration: 3s;
+	    animation-name: slidein;
+	  }
+
+	  @keyframes slidein {
+	    from {
+	      margin-left: 100%;
+	      width: 300%;
+	    }
+	    to {
+	      margin-left: 0%;
+	      width: 100%;
+	    }
+    }
+
+    body {
+      font-family: Georgia, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-image: url("atels.jpg");
+      background-color: transparent;
+      color: #2784b3;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #eee;
+      padding: 10px 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: #2784b3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      padding: 20px;
+    }
+
+    .sidebar {
+      width: 260px;
+      margin-right: 30px;
+    }
+
+    .sidebar img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    h2 {
+      color: #2784b3;
+    }
+
+    footer {
+      background-color: #eee;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Auguste VANIER</h1>
+    <p>Student, Mecahnical Engineering, ENSAM</p>
+  </header>
+
+  <nav>
+    <a href="biographie.html">Biography</a>
+    <a href="academical_project.html">Academical Project</a>
+    <a href="experiences.html">Experiences</a>
+    <a href="index.html">Home</a>
+  </nav>
+
+  <div class="container">
+    <aside class="sidebar">
+      <img src="Photo_identite.jpg" alt="Photo de profil">
+      <p><strong>Email :</strong> vanier.auguste@gmail.com</p>
+      <p><strong>Phone :</strong> +33 7 85 43 37 18</p>
+      <p><strong>Localisation :</strong> Bourg-en-Bresse, France</p>
+      <p><strong>Linkedin :</strong> <a href="https://fr.linkedin.com/in/vanier-auguste-1b917422b/">My Linkedin page</a></p>
+    </aside>
+
+    <main class="content">
+      <section id="research">
+        <h2>Academical Project</h2>
+        <p><slide>Water heater dimensioning: starting with the technical specifications we had to design a water heater in order to heat up 200 liters of water from 293 to 328 Kelvin degrees in 2 hours. We also had a constraint of 1 inch diameter for the hot water pipe.</slide></p>
+	<slide><img src="chenille.jpg" alt="Photo projet1" width=30% height=10%></slide>
+	<p><slide>After determining the heat load and the flow rate needed, I used the LMTD methodology in order to determine the exchange surface then the pipe longueur and the disposal needed inside the heater.</slide></p>
+	<p><slide>After this I started to design in 3D the heater on 3DExperience. First, I created two pieces, a tank thanks to the part design action box and the hot water pipe thanks to the generative shape design one. Then, I combined the two parts in one in order to create the water heater.</slide></p>
+  <p><slide>Now, I am simulating the heater in DTS software in order to verify the respect of the technical specifications thanks to a finite element’s simulation. I will share you the results here as soon as possible…</slide></p>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    &copy; 2025 Vanier Auguste – personal website
+  </footer>
+
+</body>
+</html>
