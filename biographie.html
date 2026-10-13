@@ -3,111 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <title>Auguste VANIER - Page personnelle</title>
-  <style>
-    slide {
-	    animation-duration: 3s;
-	    animation-name: slidein;
-	  }
-
-	  @keyframes slidein {
-	    from {
-	      margin-left: 100%;
-	      width: 300%;
-	    }
-	    to {
-	      margin-left: 0%;
-	      width: 100%;
-	    }
-    }
-    body {
-      font-family: Georgia, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
-
-    header {
-      background-image: url("atels.jpg");
-      background-color: transparent;
-      color: #2784b3;
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #eee;
-      padding: 10px 20px;
-      display: flex;
-      gap: 15px;
-    }
-
-    nav a {
-      color: #2784b3;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .container {
-      display: flex;
-      padding: 20px;
-    }
-
-    .sidebar {
-      width: 260px;
-      margin-right: 30px;
-    }
-
-    .sidebar img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .content {
-      flex: 1;
-    }
-
-    h2 {
-      color: #2784b3;
-    }
-
-    footer {
-      background-color: #eee;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <h1>Auguste VANIER</h1>
-<p>Student, Mecahnical and Industrial Engineering, Arts et Métiers ParisTech</p>
+<p>MS Mechanical Engineering student at Stanford University · Double degree with Arts et Métiers Institute of Technology</p>
   </header>
 
   <nav>
     <a href="biographie.html">Biography</a>
-    <a href="academical_project.html">Academical Projects</a>
+    <a href="academical_project.html">Academic Projects</a>
     <a href="experiences.html">Experiences</a>
     <a href="index.html">Home</a>
   </nav>
 
   <div class="container">
     <aside class="sidebar">
-      <img src="Photo_identite.jpg" alt="Photo de profil">
-      <p><strong>Email :</strong> vanier.auguste@gmail.com</p>
+      <img src="Photo_profil.jpg" alt="Auguste Vanier">
+      <p><strong>Email :</strong> <a href="mailto:avanier@stanford.edu">avanier@stanford.edu</a></p>
       <p><strong>Phone :</strong> +33 7 85 43 37 18</p>
-      <p><strong>Localisation :</strong> Bourg-en-Bresse, France</p>
+      <p><strong>Location :</strong> Stanford, California, US</p>
       <p><strong>Linkedin :</strong> <a href="https://fr.linkedin.com/in/vanier-auguste-1b917422b/">My Linkedin page</a></p>
     </aside>
 
     <main class="content">
       <section id="bio">
         <h2>Biography</h2>
-        <p><slide>I am Auguste Vanier, actually student in the master program of the Ecole national des Arts et Metiers (ENSAM). Through my schooling i had the opportunity to take part in various programs, projects and activities that forged my willingness to take the opportunity to become an engineer</slide></p>
-        <p><slide>I always wanted to work in the agricultural world, that, it was unavoidable. I grew up in fields, visiting farms next to my house, taking ear of wheat to smell the Orris butter scent and then i worked with all the agricultural machinery every summers since I was 16. My various sports experiences were as much experiences that crafted me and helped me to develop useful skills such as perseverance, analytic, synthetic and managing skills.</slide></p>
+        <p><slide>I am Auguste Vanier, currently a Master of Science student in Mechanical Engineering at Stanford University (2026-2028). It is a double degree with the Arts et Métiers Institute of Technology (ENSAM): instead of my third and last year of the combined BSc-MSc in Mechanical and Industrial Engineering at Arts et Métiers, I am following the master program of Stanford. Through my schooling I had the opportunity to take part in various programs, projects and activities that forged my willingness to take the opportunity to become an engineer</slide></p>
+        <p><slide>I always wanted to work in the agricultural world, that, it was unavoidable. I grew up in fields, visiting farms next to my house, taking ears of wheat to smell the Orris butter scent and then I worked with all the agricultural machinery every summer since I was 16. My various sports experiences were as much experiences that crafted me and helped me to develop useful skills such as perseverance, analytic, synthetic and managing skills.</slide></p>
         <p><slide>However, for years now, agricultural concerns about the rising of the needs and the difficulty to respond to it led me to want to push the limits of agricultural machinery to avoid a collapse of a world already on the edge of starvation.</slide></p>
+      </section>
+
+      <section id="education">
+        <h2>Education</h2>
+        <h3>Stanford University, California, US <span class="date">2026-2028</span></h3>
+        <p>Master of Science in Mechanical Engineering – double degree with Arts et Métiers, in place of my third and last year there</p>
+        <ul>
+          <li>Relevant courses: Optimization Analytics, Decision Making under Uncertainty, Principles of Robot Autonomy I</li>
+          <li>Player of the Rugby team</li>
+        </ul>
+        <h3>Arts et Métiers Institute of Technology, Lille | Paris, France <span class="date">2024-2027</span></h3>
+        <p>Combined BSc-MSc in Mechanical and Industrial Engineering – 4.0/4.0 GPA</p>
+        <ul>
+          <li>Relevant courses: Advanced Mathematics, Optimization and Numerical Methods, Electronics, Automatics, Industrial Processes</li>
+          <li>Award for Outstanding Academic Achievement (27/1,203 ranking)</li>
+          <li>Student association community manager (+1k followers)</li>
+          <li>Rugby player for the school team and referee for the Stade Français Rugby Club</li>
+        </ul>
+        <h3>Lycée Sainte-Geneviève, Versailles, France <span class="date">2022-2024</span></h3>
+        <p>Preparatory Program – 3.9/4.0 GPA</p>
+        <ul>
+          <li>Relevant courses: Advanced Mathematics, Computer Sciences, Physics and Engineering Sciences</li>
+        </ul>
+      </section>
+
+      <section id="achievements">
+        <h2>Achievements and Interests</h2>
+        <ul>
+          <li>Award for Outstanding Academic Achievement, Arts et Métiers Institute of Technology (2025)</li>
+          <li>Rugby player in a team for 9 years and referee for 5 years (AN1 Referee Diploma in 2021)</li>
+          <li>Chess (5 years, 1350 elo)</li>
+        </ul>
+      </section>
+
+      <section id="skills">
+        <h2>IT and Language Skills</h2>
+        <ul>
+          <li><strong>Data languages:</strong> Python (advanced: user interfaces, data analysis, robot control, path finding algorithms), SQL (intermediate), HTML (advanced: portfolio)</li>
+          <li><strong>3D modelling &amp; CAD:</strong> Catia (advanced: dismantling line), 3DExperience (advanced: water tank modelling), SolidWorks (advanced: rugby tackle device), Blender (beginner: slicer for 3D printing)</li>
+          <li><strong>Languages:</strong> French (native), English (fully operational), Spanish (intermediate)</li>
+        </ul>
       </section>
 
     </main>

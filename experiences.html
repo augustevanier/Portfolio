@@ -3,116 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <title>Auguste VANIER - Page personnelle</title>
-  <style>
-    slide {
-	    animation-duration: 3s;
-	    animation-name: slidein;
-	  }
-
-	  @keyframes slidein {
-	    from {
-	      margin-left: 100%;
-	      width: 300%;
-	    }
-	    to {
-	      margin-left: 0%;
-	      width: 100%;
-	    }
-    }
-
-    body {
-      font-family: Georgia, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
-
-    header {
-      background-image: url("atels.jpg");
-      background-color: transparent;
-      color: #2784b3;
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #eee;
-      padding: 10px 20px;
-      display: flex;
-      gap: 15px;
-    }
-
-    nav a {
-      color: #2784b3;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .container {
-      display: flex;
-      padding: 20px;
-    }
-
-    .sidebar {
-      width: 260px;
-      margin-right: 30px;
-    }
-
-    .sidebar img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .content {
-      flex: 1;
-    }
-
-    h2 {
-      color: #2784b3;
-    }
-
-    footer {
-      background-color: #eee;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <h1>Auguste VANIER</h1>
-    <p>Student, Mecahnical and Industrial Engineering, Arts et Métiers ParisTech</p>
+    <p>MS Mechanical Engineering student at Stanford University · Double degree with Arts et Métiers Institute of Technology</p>
   </header>
 
   <nav>
     <a href="biographie.html">Biography</a>
-    <a href="academical_project.html">Academical Projects</a>
+    <a href="academical_project.html">Academic Projects</a>
     <a href="experiences.html">Experiences</a>
     <a href="index.html">Home</a>
   </nav>
 
   <div class="container">
     <aside class="sidebar">
-      <img src="Photo_identite.jpg" alt="Photo de profil">
-      <p><strong>Email :</strong> vanier.auguste@gmail.com</p>
+      <img src="Photo_profil.jpg" alt="Auguste Vanier">
+      <p><strong>Email :</strong> <a href="mailto:avanier@stanford.edu">avanier@stanford.edu</a></p>
       <p><strong>Phone :</strong> +33 7 85 43 37 18</p>
-      <p><strong>Localisation :</strong> Bourg-en-Bresse, France</p>
+      <p><strong>Location :</strong> Stanford, California, US</p>
       <p><strong>Linkedin :</strong> <a href="https://fr.linkedin.com/in/vanier-auguste-1b917422b/">My Linkedin page</a></p>
     </aside>
 
     <main class="content">
       <section id="Profesional Experiences">
-        <h2>Experiences</h2>
-		<p><strong><a href="https://amje-lille.fr/">Arts et Métiers Junior Enterprise</a>, Lille, Business Manager:</strong> Being part of the business team of the junior enterprise is drafting proposals through sales prospecting or directly for interested companies. But also secure contracts and then managed the intervenor in charge of it. During the past year, I have generated 5K € out of 23k € annual revenue and delivered 6 successful missions to clients. I also organized a business event for more than 60 people (5k € contract).</p>
-  		<p><strong><a href="https://www.renault-trucks.com/en/newsroom/press-releases/industrial-tourism-tour-renault-trucks-factory-bourg-en-bresse-home-0">Renault Trucks</a>, Bourg-en-Bresse, Blue collar Internship:</strong> Last summer, I completed my blue-collar internship in a Renault Trucks (Mack Trucks in the US) factory. During this one-month internship, I Assembled 2,340 Mudguards on the production line. Being on the production line cast a new light on my understanding of this industrial work. I had the opportunity to improve ergonomic aspects of the workstation in which I was working and design a new pneumatic command that I 3D printed afterward.</p>
-	  	<p><strong><a href="https://groupe-jcvagri.fr/">Group JCV Agri</a>, Saône et Loire, Warehouse man:</strong> Since the summer of 2021, I began working as a warehouse operator. In 2023, I received, followed up and sold spare parts to more than 150 clients during 2 consecutive months. In 2024, I designed and installed a new workshop in the Poligny site. And in 2025, I reorganized spare parts storage by category while stocktaking to save space in the Saint-Germain du Bois site. During these 5 years I learnt about specific agricultural machinery spare parts utility, sales techniques and warehouse operation. I also saved the equivalent of 1000 sq ft, created 800 sq ft of workshop used as self-service and 500 sq ft as spare parts storage (Poligny) </p>
+        <figure class="wide">
+          <img src="gauthier_tractor_baler.jpg" alt="New Holland T7.300 tractor and BigBaler 1290 Plus in front of the dealership">
+          <figcaption>The T7.300 tractor and the BigBaler 1290 Plus that I demonstrated on farms during summer 2026</figcaption>
+        </figure>
+        <h2>Work Experience</h2>
+		<p><strong>Materiel Agricole Gauthier (part of <a href="https://groupe-jcvagri.fr/">Group JCV Agri</a>), Autun, Warehouse operator and Demonstrator (Jun–Aug 2026):</strong> In June, I reorganized the Autun site and served clients, freeing 10% of the warehouse space (200 of 2,000 sq ft). From July to August, I demonstrated the new T7.300 tractor and the BigBaler 1290 Plus directly on farms: I ran demos for 20 customers, which led to 4 contracts. <a href="demo_video.html">Watch the video of a demonstration</a>.</p>
+		<p><strong><a href="https://www.renault-trucks.com/en/newsroom/press-releases/industrial-tourism-tour-renault-trucks-factory-bourg-en-bresse-home-0">Renault Trucks</a>, Bourg-en-Bresse, Blue collar Internship (Jun–Jul 2025):</strong> I completed my blue-collar internship in a Renault Trucks (Mack Trucks in the US) factory, where I assembled 2,340 fenders on the production line. Being on the production line cast a new light on my understanding of this industrial work. I analyzed my workstation and improved its ergonomics: I redesigned a pneumatic control on CATIA to reduce noise disturbance, which I 3D printed afterward, and I reorganized the workstation, reducing the takt time by 5.4 s per fender on average.</p>
+	  	<p><strong><a href="https://groupe-jcvagri.fr/">Group JCV Agri</a>, Saône et Loire, Warehouse operator (summers 2021–2025):</strong> I worked there as a warehouse operator every summer from 2021 to 2025. In 2023, I received, followed up and sold spare parts to more than 150 clients over 2 consecutive months. In 2024, I designed and installed a new workshop at the Poligny site: 800 sq ft of self-service workshop and 500 sq ft of spare parts storage. In 2025 (from July to August), I reorganized the spare parts storage by category during the stocktaking at the Saint-Germain-du-Bois site, which freed the equivalent of 1,000 sq ft. Over these 5 summers, I learnt what the specific spare parts of agricultural machinery are used for, as well as sales techniques and warehouse operation and optimization.</p>
 	  </section>
 	<section id="Associative Experiences">
+		<h2>Volunteering</h2>
+		<p><strong><a href="https://amje-lille.fr/">Arts et Métiers Junior Enterprise</a>, Lille, Volunteer Business Manager (Dec 2024–Jun 2026):</strong> Being part of the business team of the junior enterprise meant drafting business proposals through sales prospecting or directly for interested companies, securing projects and contracts, and then managing the 10+ members working on the missions. I generated €10k out of €38k annual revenue and delivered 5 successful missions to clients. I also organized business events for more than 60 people (€5k contract).</p>
 		<p><strong><a href="https://www.cordeesdelareussite.fr/">Les cordées de la réussite (Climb toward success)</a>, Paris, Volunteer:</strong>I help undergraduate students succeed in the graduate schools‘ competitive admission examinations. I help them acquire rigorousness in their work, give them advice on their methodology and help them understand complex engineering science systems.</p>
-		<p><strong><a href="https://www.abrasouverts.fr/"> A Bras Ouverts (With Open Arms)</a>, Paris, Volunteer:</strong>I accompany mentally disabled people on week-end trips in the French countryside. With 3 to 5 duos - a duo is composed of a disable person and a companion - we live during a week-end at the rythm of the "young" as they are called. This amazing experience allows to think out of the box in term of disabled people abilities and on your own choices of life.</p>
+		<p><strong><a href="https://www.abrasouverts.fr/">A Bras Ouverts (With Open Arms)</a>, Paris, Volunteer:</strong> I accompany people with intellectual disabilities on weekend trips in the French countryside. We go as 3 to 5 duos (a duo is one person with a disability and one companion) and live for a weekend at the rhythm of the "young", as they are called. This amazing experience makes you think differently about what people with disabilities are able to do, and about your own life choices.</p>
 	</section>
 
     </main>

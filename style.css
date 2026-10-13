@@ -1,0 +1,543 @@
+/* Shared stylesheet for every page of the site */
+
+:root {
+  --accent: #2784b3;
+  --accent-dark: #1b5f82;
+  --accent-soft: #e8f3f9;
+  --text: #24313a;
+  --muted: #5d6b75;
+  --bg: #f5f7f9;
+  --surface: #ffffff;
+  --border: #dde3e8;
+  --radius: 12px;
+  --shadow: 0 2px 10px rgba(20, 40, 60, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+}
+
+/* ---------- Header ---------- */
+
+header {
+  /* dark veil over the photo so the title stays readable */
+  background-image: linear-gradient(rgba(15, 40, 58, 0.72), rgba(15, 40, 58, 0.72)), url("atels.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  padding: 56px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+}
+
+header p {
+  margin: 0;
+  font-size: 1.05rem;
+  opacity: 0.9;
+}
+
+/* ---------- Navigation ---------- */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 8px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+nav a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+subnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+  padding: 3px;
+  background-color: var(--accent-soft);
+  border-radius: 999px;
+}
+
+subnav a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 5px 12px;
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.sidebar {
+  flex: 0 0 260px;
+  position: sticky;
+  top: 76px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.sidebar img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.sidebar p {
+  margin: 8px 0;
+}
+
+.sidebar strong {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 36px 36px;
+}
+
+.content section + section {
+  margin-top: 40px;
+}
+
+/* ---------- Text ---------- */
+
+h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent-dark);
+  font-size: 1.6rem;
+  line-height: 1.3;
+  margin: 0 0 16px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin: 24px 0 4px;
+}
+
+#education h3 + p {
+  margin: 0 0 6px;
+  color: var(--muted);
+}
+
+/* dates pushed to the right of a title */
+.date {
+  float: right;
+  margin-left: 12px;
+  font-weight: 500;
+  color: var(--accent-dark);
+}
+
+h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h2 a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: var(--accent-dark);
+}
+
+.content ul {
+  padding-left: 22px;
+}
+
+.content li {
+  margin-bottom: 4px;
+}
+
+/* ---------- Media ---------- */
+
+.content img,
+.content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  margin: 8px 0;
+}
+
+.content a img {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.content a img:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(20, 40, 60, 0.18);
+}
+
+/* Row of project pictures on the home page */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+
+/* ---------- Page-specific touches ---------- */
+
+/* Academical projects list: a line between two projects */
+#academical_project h2 ~ h2 {
+  font-size: 1.3rem;
+}
+
+#academical_project h2 ~ h2 ~ h2 {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+/* Experiences: one card per experience */
+section[id$="Experiences"] p {
+  background-color: var(--bg);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin: 0 0 16px;
+}
+
+/* ---------- Entrance animation ---------- */
+
+slide {
+  animation: fadein 0.6s ease both;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  slide {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 20px;
+  margin-top: 24px;
+}
+
+/* ---------- Phones and small screens ---------- */
+
+@media (max-width: 800px) {
+  body {
+    font-size: 16px;
+  }
+
+  header {
+    padding: 36px 16px;
+  }
+
+  nav {
+    padding: 6px 10px;
+  }
+
+  nav a {
+    padding: 6px 10px;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 20px 16px;
+  }
+
+  .sidebar {
+    position: static;
+    flex: none;
+    text-align: center;
+  }
+
+  .sidebar img {
+    width: 150px;
+    margin: 0 auto 12px;
+  }
+
+  .content {
+    padding: 20px 18px 24px;
+  }
+
+  /* pictures sized in % of the page become full width */
+  .content img:not(.gallery img) {
+    width: 100%;
+  }
+}
+
+/* ---------- Figures and tables (project pages) ---------- */
+
+figure {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.content figure img {
+  width: 100%;
+  max-width: 520px;
+  margin: 0;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.figure-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+  align-items: end;
+}
+
+.figure-row figure {
+  margin: 12px 0;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 16px auto;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+th {
+  background-color: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
+td:first-child,
+th:first-child {
+  text-align: left;
+}
+
+/* ---------- Reproduction of the cloakroom scanning app ---------- */
+
+.app-mock {
+  display: flex;
+  max-width: 640px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background-color: #0a1929;
+  color: #ffffff;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.app-side {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 12px 12px;
+  background-color: #051018;
+}
+
+.app-logo {
+  margin: 0 -12px;
+  padding: 16px 4px;
+  background-color: #0a1929;
+  color: #d4af37;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.app-logo span {
+  display: block;
+  margin-top: 4px;
+  color: #f4e5b2;
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.app-sep {
+  height: 2px;
+  margin: 8px 8px;
+  background-color: #d4af37;
+}
+
+.app-btn {
+  padding: 9px 4px;
+  border-radius: 6px;
+  background-color: #1e3a5f;
+}
+
+.app-btn.active {
+  background-color: #d4af37;
+  color: #0a1929;
+  font-weight: 700;
+}
+
+.app-status {
+  margin-top: auto;
+  padding-top: 12px;
+  color: #b0bec5;
+  font-size: 0.7rem;
+}
+
+.app-status b {
+  display: block;
+  color: #d4af37;
+  font-size: 1rem;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.app-cam {
+  flex: 1;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #d4af37;
+  border-radius: 10px;
+  background-color: #051018;
+  color: #b0bec5;
+  font-style: italic;
+}
+
+.app-info {
+  padding: 14px 12px;
+  border-radius: 10px;
+  background-color: #1e3a5f;
+}
+
+.app-info-title {
+  color: #f4e5b2;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.app-entry {
+  max-width: 260px;
+  margin: 10px auto 0;
+  padding: 8px;
+  border: 2px solid #d4af37;
+  border-radius: 6px;
+  background-color: #0a1929;
+  color: #b0bec5;
+  text-align: left;
+}
+
+/* wide drawings such as plans use the full text width */
+.content figure.wide img {
+  max-width: 100%;
+}
+
+/* portrait photos stay small */
+.content figure.narrow img {
+  max-width: 300px;
+}
+
+.content figure video {
+  width: 100%;
+  margin: 0;
+  display: block;
+}

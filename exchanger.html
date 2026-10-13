@@ -3,99 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Auguste VANIER - Page personnelle</title>
-  <style>
-    slide {
-	    animation-duration: 3s;
-	    animation-name: slidein;
-	  }
-
-	  @keyframes slidein {
-	    from {
-	      margin-left: 100%;
-	      width: 300%;
-	    }
-	    to {
-	      margin-left: 0%;
-	      width: 100%;
-	    }
-    }
-
-    body {
-      font-family: Georgia, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
-
-    header {
-      background-image: url("atels.jpg");
-      background-color: transparent;
-      color: #2784b3;
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #eee;
-      padding: 10px 20px;
-      display: flex;
-      gap: 15px;
-    }
-
-    subnav {
-      background-color: #9697a3;
-      display: flex;
-      gap: 15px;
-    }
-	  
-    nav a {
-      color: #2784b3;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .container {
-      display: flex;
-      padding: 20px;
-    }
-
-    .sidebar {
-      width: 260px;
-      margin-right: 30px;
-    }
-
-    .sidebar img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .content {
-      flex: 1;
-    }
-
-    h2 {
-      color: #2784b3;
-    }
-
-    footer {
-      background-color: #eee;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <h1>Auguste VANIER</h1>
-    <p>Student, Mecahnical and Industrial Engineering, Arts et Métiers ParisTech</p>
+    <p>MS Mechanical Engineering student at Stanford University · Double degree with Arts et Métiers Institute of Technology</p>
   </header>
 
   <nav>
-    <a href="academical_project.html">Academical Project</a>
+    <a href="academical_project.html">Academic Project</a>
     <subnav>
+		<a href="robot_autonomy.html">Autonomy</a>
 		<a href="cloakroom.html">Cloakroom</a>
 	    <a href="exchanger.html">Heater</a>
 		<a href="factory_robot.html">Robot</a>
@@ -107,75 +28,39 @@
 
   <div class="container">
     <aside class="sidebar">
-      <img src="Photo_identite.jpg" alt="Photo de profil">
-      <p><strong>Email :</strong> vanier.auguste@gmail.com</p>
+      <img src="Photo_profil.jpg" alt="Auguste Vanier">
+      <p><strong>Email :</strong> <a href="mailto:avanier@stanford.edu">avanier@stanford.edu</a></p>
       <p><strong>Phone :</strong> +33 7 85 43 37 18</p>
-      <p><strong>Localisation :</strong> Bourg-en-Bresse, France</p>
+      <p><strong>Location :</strong> Stanford, California, US</p>
       <p><strong>Linkedin :</strong> <a href="https://fr.linkedin.com/in/vanier-auguste-1b917422b/">My Linkedin page</a></p>
     </aside>
 
     <main class="content">
       <section id="research">
         <h2>Modelling of hot water tank (80 hrs)</h2>
-        <p><slide>Water heater dimensioning: starting with the technical specifications we had to design a water heater in order to heat up 200 liters of water from 293 to 328 Kelvin degrees in 2 hours. We also had a constraint of 1 inch diameter for the hot water pipe.</slide></p>
-	<p><slide>After determining the heat load and the flow rate needed, I used the LMTD methodology in order to determine the exchange surface then the pipe longueur and the disposal needed inside the heater.</slide></p>
+        <p><strong>Feb–Jun 2025 · Completed project · Under the supervision of Prof. S. Simonet (LMFL) and P. Carpentier (LISPEN)</strong></p>
+        <p><slide>Water heater sizing: starting from the technical specifications, I had to design a water heater able to heat 200 liters of water from 293 K to 328 K in 2 hours. The hot water pipe also had to be 1 inch in diameter.</slide></p>
+	<p><slide>After determining the heat load and the flow rate needed, I used the LMTD method to determine the exchange surface, then the pipe length and its layout inside the heater.</slide></p>
 	<slide><img src="Plan_echangeur.PNG" alt="exchanger plan" width=50% height=30%></slide>
-	<p><slide>After this I started to use computer-aided design software - CATIA from 3DExperience- to design the heater. First, I created two pieces, a tank thanks to the part design action box and the hot water pipe thanks to the generative shape design one. Then, I combined the two parts in one in order to create the water heater.</slide></p>
-  	<p><slide>Now, I am simulating the heater in DTS software in order to verify the respect of the technical specifications thanks to a finite element’s simulation.</slide></p>
+	<p><slide>Then I used computer-aided design software (CATIA, from 3DExperience) to design the heater. First, I created two parts: the tank with the Part Design workbench and the hot water pipe with the Generative Shape Design one. Then, I combined the two parts into one to create the water heater.</slide></p>
+  	<p><slide>Finally, I simulated the heater numerically in Star-CCM+ to check that it respected the technical specifications.</slide></p>
 	<slide><img src="Mesh_echangeur.PNG" alt="exchanger mesh" width=50% height=30%></slide>
-	<p><slide>First, the 3D model of the water heater had to be imported into the Star CCM+ software,
-then its various boundaries had to be defined so that the nature of the
-moving fluids, their interactions with the various walls, and the boundary conditions
-with the walls could be defined.
-Next, a mesh had to be defined in order to calculate the state of the system at every point.
-We varied the different parameters (base size and surface size in particular) in order to obtain a
-fine mesh and obtain relevant results during the simulation. To visualize these results,
-we created cross-sectional views of the hot water tank
-to visualize the propagation of heat within the different fluids.
-Finally, we assigned different parameters to the fluids (density, flow rate, initial temperature, etc.) to ensure that the simulation was accurate and relevant.
-In terms of readings, we decided to visualize different temperatures, the energy
-involved, changes in flow rates, heat transfers, and heat capacity. We
-also had the option of visualizing the temperature change at each calculation step at
-any point in our mesh using the scalar scene menu
-</slide></p>
+	<p><slide>First, I imported the 3D model of the water heater into Star-CCM+ and defined its boundaries, in order to set the nature of the moving fluids, their interactions with the walls and the boundary conditions. Next, I defined a mesh to calculate the state of the system at every point. I varied the parameters (base size and surface size in particular) to obtain a fine mesh and relevant results. To visualize these results, I created cross-sectional views of the tank showing the propagation of heat within the fluids. Finally, I assigned the fluid parameters (density, flow rate, initial temperature, etc.) so that the simulation was accurate. As outputs, I chose to follow the temperatures, the energy involved, the flow rates, the heat transfers and the heat capacity. The scalar scene menu also allowed me to follow the temperature at each calculation step at any point of the mesh.</slide></p>
 		  <slide><img src="temperature.png" alt="exchanger temp" width=50% height=30%></slide>
-		  <p><slide>
-			  First simulation: zero flow for the cold fluid 
-			  We note that the hot water pipe is at the desired temperature (348 K=75°C), the thermal 
-			  effects spread through the cold water but struggle to be uniform throughout the tank.
-			  In addition, the cold water stagnating at the top is not realistic if we take into account
-			  the relative mass of hot water, which is lighter than cold water. We note that the variations
-			  in momentum are roughly identical in all directions despite slight differences around 250
-			  iterations, resembling more an error than a consistent result, as we no longer have the same
-			  variation in momentum in the X and Y directions, which seems inconsistent given the geometry 
-			  of our system. As for Tke (Turbulent Kinetic Energy) and Tdr (Turbulent Dissipation Rate), 
-			  we observe that the variation in Tke shows a decrease, synonymous with variations in intensity 
-			  which decreased with the number of iterations. This highlights the stability of the model. 
-			  Similarly, the residuals tending to be constant for the Tdr curve are also an indicator of the 
-			  stability of the model. The energy decreases, tending towards 0. It will reach 0 when the system 
-			  is in equilibrium. We can clearly see that the flow rate is zero throughout our simulation for 
-			  the cold fluid, while the flow rate of the hot fluid becomes constant after a short transient 
-			  period. We note that the water at the outlet for the cold liquid is warmer than the water at the 
-			  inlet, clearly showing the temperature gradient created by our exchanger and synonymous with its 
-			  proper functioning.
-		  </slide></p>
+		  <h3>Simulation: zero flow for the cold fluid</h3>
+		  <ul>
+		  <li><strong>Temperature:</strong> the hot water pipe is at the desired temperature (348 K = 75 °C). The heat spreads through the cold water but struggles to become uniform throughout the tank. The cold water stagnating at the top is not realistic, since hot water is lighter than cold water.</li>
+		  <li><strong>Momentum:</strong> the variations are roughly identical in all directions, apart from slight differences around 250 iterations. Given the geometry of the system, these differences look more like an error than a consistent result.</li>
+		  <li><strong>Turbulence:</strong> the Tke (Turbulent Kinetic Energy) decreases with the number of iterations and the residuals of the Tdr (Turbulent Dissipation Rate) tend to be constant. Both show the stability of the model.</li>
+		  <li><strong>Energy:</strong> it decreases and tends toward 0, which is reached when the system is in equilibrium.</li>
+		  <li><strong>Flow rates:</strong> the flow rate of the cold fluid is zero throughout the simulation, while the flow rate of the hot fluid becomes constant after a short transient period.</li>
+		  <li><strong>Outlet:</strong> the cold water is warmer at the outlet than at the inlet. This clearly shows the temperature gradient created by the exchanger, and therefore that it works properly.</li>
+		  </ul>
 		  <slide><img src="Residuals.png" alt="Results" width=50% height=30%></slide>
-		  <p><slide>
-			  Second simulation: non-zero flow rate for the cold fluid
-			  A second model should be considered when the cold-water flow is no longer zero but in use. 
-			  In addition, it would be wise to modify the boundary parameters near the
-			  walls so that there are no longer any areas of cold water at the top of the tank, as observed
-			  in the first simulation.
-		  </slide></p>
-		  <p><slide>
-			  Conclusion:
-			  In conclusion, digital tools allow us to refine the results obtained in the theoretical part by considering 
-			  various parameters, particularly the geometry of the system, all heat exchanges and transfers, 
-			  and the unsteady evolution of the system.
-			  Furthermore, in my model, it would be more appropriate to reduce the diameter of my coils to maximize the 
-			  exchanges between the cold liquid and the hot liquid, which are limited here by the proximity 
-			  between the coils and the wall.
-		  </slide></p>
+		  <h3>Possible continuation</h3>
+		  <p><slide>A second model could consider a non-zero cold-water flow, which is the case when the hot water is being used. It would also be wise to modify the boundary parameters near the walls so that there are no longer any areas of cold water at the top of the tank, as observed in this simulation.</slide></p>
+		  <h3>Conclusion</h3>
+		  <p><slide>Digital tools allowed me to refine the results obtained in the theoretical part by considering various parameters, particularly the geometry of the system, all the heat exchanges and transfers, and the unsteady evolution of the system. Furthermore, in my model, it would be more appropriate to reduce the diameter of the coils to maximize the exchanges between the cold liquid and the hot liquid, which are limited here by the proximity between the coils and the wall.</slide></p>
       </section>
     </main>
   </div>

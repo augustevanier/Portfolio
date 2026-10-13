@@ -3,100 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Auguste VANIER - Page personnelle</title>
-  <style>
-    slide {
-	    animation-duration: 3s;
-	    animation-name: slidein;
-	  }
-
-	  @keyframes slidein {
-	    from {
-	      margin-left: 100%;
-	      width: 300%;
-	    }
-	    to {
-	      margin-left: 0%;
-	      width: 100%;
-	    }
-    }
-
-    body {
-      font-family: Georgia, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-	    
-    }
-
-    header {
-      background-image: url("atels.jpg");
-      background-color: transparent;
-      color: #2784b3;
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #eee;
-      padding: 10px 20px;
-      display: flex;
-      gap: 15px;
-    }
-
-    subnav {
-      background-color: #9697a3;
-      display: flex;
-      gap: 15px;
-    }
-	  
-    nav a {
-      color: #2784b3;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .container {
-      display: flex;
-      padding: 20px;
-    }
-
-    .sidebar {
-      width: 260px;
-      margin-right: 30px;
-    }
-
-    .sidebar img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .content {
-      flex: 1;
-    }
-
-    h2 {
-      color: #2784b3;
-    }
-
-    footer {
-      background-color: #eee;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <h1>Auguste VANIER</h1>
-    <p>Student, Mecahnical and Industrial Engineering, Arts et Métiers ParisTech</p>
+    <p>MS Mechanical Engineering student at Stanford University · Double degree with Arts et Métiers Institute of Technology</p>
   </header>
 
   <nav>
-    <a href="academical_project.html">Academical Project</a>
+    <a href="academical_project.html">Academic Project</a>
     <subnav>
+		<a href="robot_autonomy.html">Autonomy</a>
 		<a href="cloakroom.html">Cloakroom</a>
 	    <a href="exchanger.html">Heater</a>
 		<a href="factory_robot.html">Robot</a>
@@ -108,27 +28,68 @@
 
   <div class="container">
     <aside class="sidebar">
-      <img src="Photo_identite.jpg" alt="Photo de profil">
-      <p><strong>Email :</strong> auguste.vanier@ensam.eu </p>
-      <p><strong>Phone :</strong> +33 (0)7 85 43 37 18</p>
-      <p><strong>Localisation :</strong> Bourg-en-Bresse, France</p>
+      <img src="Photo_profil.jpg" alt="Auguste Vanier">
+      <p><strong>Email :</strong> <a href="mailto:avanier@stanford.edu">avanier@stanford.edu</a></p>
+      <p><strong>Phone :</strong> +33 7 85 43 37 18</p>
+      <p><strong>Location :</strong> Stanford, California, US</p>
       <p><strong>Linkedin :</strong> <a href="https://fr.linkedin.com/in/vanier-auguste-1b917422b/">My Linkedin page</a></p>
     </aside>
 
     <main class="content">
       <section id="research">
-        <h2>Study and design of a cloakroom for the "Nuit des Fignos" Gala (60 hrs)</h2>
-        <p><slide>This project was a personal project that I developped to improve the experience of the "Nuit des Fignos" Gala - Arts et Métiers ParisTech Gala (Lille). In order to improve the experience of our guests, we looked back at their feedbacks. And this was the most popular opinion : "The waiting and the management of the cloakroom is a catastrophe !". Therefore, I decided to change it !</slide></p>
-	<slide><img src="cloakroom_vide.png" alt="empty cloakroom" width=50% height=50% text-align=center></slide>
-	<p><slide>This year, we were waiting 3,000 guests but the challenge was even greater because for the first year in 25 years the Gala took place out of the school. That additional constraint obligate us to be even more professional in the management of the event than before. So I started by studying the previous Gala: their weaknesses and their strenghts. Thanks to Mister Quenehen i managed to analyze the previous editions Gant diagrams and reports, allowing me to understand the major issues of this cloakroom. Those precious informations firstly highlighted that every guests had to much "work" to do to give their clothes and secondly that every worker of the cloakroom where lost in the organization due to its unclarity. This was the two biggest chalenges !</slide></p>
+        <h2>Study and design of a cloakroom for the "Nuit des Fignoss" Gala (60 hrs)</h2>
+        <p><slide>This was a personal project that I developed to improve the experience of the "Nuit des Fignoss" Gala - Arts et Métiers ParisTech Gala (Lille). To improve the experience of our guests, I looked back at their feedback, and this was the most popular opinion: "The waiting and the management of the cloakroom is a catastrophe!". Therefore, I decided to change it!</slide></p>
+	<figure class="narrow">
+	  <img src="cloakroom_vide.jpg" alt="The empty room before the installation of the cloakroom">
+	  <figcaption>The empty room before the installation of the cloakroom</figcaption>
+	</figure>
+	<p><slide>This year, the Gala was expecting 3,000 guests, and the challenge was even greater because, for the first time in 25 years, it took place outside the school. That additional constraint obliged me to be even more professional in the management of the cloakroom than before. So I started by studying the previous Galas: their weaknesses and their strengths. Thanks to Mister Quenehen, I managed to analyze the Gantt diagrams and reports of the previous editions, allowing me to understand the major issues of this cloakroom. This precious information first highlighted that every guest had too much "work" to do to hand over their clothes, and secondly that every worker of the cloakroom was lost in the organization because it was unclear. These were the two biggest challenges!</slide></p>
 	<p><slide>Service improvement:</slide></p>
-	<p><slide>As we already use QR code to manage the entry of the Gala, I decided to use the same QR code for the cloakroom. In fact, when the guest come to the cloakroom we scan his QR Code with the computer camera and then we scan the bar code of the storage holder. In this way, the clothes are linked with the QR Code andare stored at the storage holder we attributed to it. Moreover, we decided to add tag on the clothes as well as on the hangers to be sure to perfectly matched every clothes with its storage holder. This new process was also very efficient when the guests came back to pick up their clothes. In fact, when scanning the QR Code a second time it gives you the storage Holder and allow you to find the clothes easily.</slide></p>
-      	<slide><img src="cloakroom_interface.png" alt="cloakroom interface" width=50% height=50%></slide>
+	<p><slide>As the Gala already used QR codes to manage the entry, I decided to use the same QR code for the cloakroom. When a guest comes to the cloakroom, the worker scans their QR code with the computer camera and then scans the bar code of the storage holder. In this way, the clothes are linked with the QR code and are stored at the storage holder attributed to it. Moreover, I decided to add tags on the clothes as well as on the hangers, to be sure to perfectly match every item with its storage holder. This new process was also very efficient when the guests came back to pick up their clothes: scanning the QR code a second time gives the storage holder and allows the worker to find the clothes easily.</slide></p>
+      	<figure>
+	  <div class="app-mock" role="img" aria-label="Reproduction of the cloakroom scanning interface">
+	    <div class="app-side">
+	      <div class="app-logo">NUIT DES<br>FIGNOSS<span>VESTIAIRE</span></div>
+	      <div class="app-sep"></div>
+	      <div class="app-btn active">🎫 Enregistrer</div>
+	      <div class="app-btn">🔍 Rechercher</div>
+	      <div class="app-btn">📜 Historique</div>
+	      <div class="app-btn">📊 Affluence</div>
+	      <div class="app-status"><b>●</b>Mode: Enregistrement</div>
+	    </div>
+	    <div class="app-main">
+	      <div class="app-cam">Live webcam view<br>(QR code detection)</div>
+	      <div class="app-info">
+	        <div class="app-info-title">En attente du QR Code...</div>
+	        <div class="app-entry">Scanner le code-barres ici...</div>
+	      </div>
+	    </div>
+	  </div>
+	  <figcaption>Reproduction of the scanning interface I coded in Python (CustomTkinter) for the cloakroom desks</figcaption>
+	</figure>
+	<p><slide>The program has four modes. "Enregistrer" (register) reads the guest QR code with the computer camera, locks it, and then links it to the bar code of the storage holder scanned with a handheld scanner; a QR code already registered is refused. "Rechercher" (search) gives back the storage holder when the guest QR code is scanned again. "Historique" (history) shows every scan made for one QR code. Finally, "Affluence" (attendance) plots the number of deposits per 1 minute, 10 minutes or 1 hour. Every association and every scan is saved with its time in CSV files, and a beep confirms each scan so the worker does not need to look at the screen.</slide></p>
+	<p><slide>I coded it in Python with OpenCV and pyzbar for the QR code detection, CustomTkinter for the interface, and pandas and matplotlib for the attendance graph.</slide></p>
 	<p><slide>Cloakroom formalization:</slide></p>
-	<p><slide>Thanks to my warehouse operator experiences, i managed to improve the cloakroom organization. In fact, I used a XX-00-00 combination as a logical localization of the hanger : first XX for the letter of the column (from A to H), then 00 for the number of the gantry (from 1 to 12) and finally 00 for the number of the hanger on the gantry (from 1 to 35). This organization was better understandable than before. Moreover, we also decided to increase the number of desk with 4 desks from the beginning to midnight and then 6 desks from midnight to 4am. </slide></p>
-      	<slide><img src="cloakroom_plan.png" alt="cloakroom plan" width=20% height=10%></slide>
-	<p><slide>Finally, thanks to our new scanning program and the new organization, we were allowed to extract very important data to analyze the flow of people, flow of clothes and effectivenes of the cloakroom. (Analysis in coming)</slide></p>
-	<p><slide>Thanks to this project, I managed to understand the usefulness of the industrial engineering tools such as the takt time or the Gantt diagram but also I was allowed to live a beautiful human project, part of the quest of the Gala improvement.</slide></p>
+	<p><slide>Thanks to my warehouse operator experience, I managed to improve the cloakroom organization. I used an XX-00-00 combination as a logical location of the hanger: first XX for the letter of the column (from A to H), then 00 for the number of the gantry (from 1 to 12) and finally 00 for the number of the hanger on the gantry (from 1 to 35). This organization was easier to understand than before. The cloakroom was a 9 m by 25.7 m room with 8 columns of 12 gantries (each gantry is 2 m long, 0.6 m wide and 1.7 m high and holds 30 to 35 hangers), which gives between 2,880 and 3,360 places. Each hanger carries its own bar code, so each hanger is a locker. The plan was to have 12 people working continuously: 2 people in each of the 4 storage zones and 1 person at each of the 4 desks, plus 1 person passing the clothes from the desks to the intermediate tables. Moreover, I also decided to increase the number of desks, with 4 desks from the beginning to midnight and then 6 desks from midnight to 4am. </slide></p>
+      	<figure class="wide">
+	  <img src="cloakroom_plan.svg" alt="Plan of the cloakroom: 8 columns of 12 gantries, intermediate tables and 4 desks">
+	  <figcaption>Plan of the cloakroom organization: each hanger is a locker, for example column A, gantry 12, hanger 8 = A-12-08</figcaption>
+	</figure>
+	<p><slide>Results:</slide></p>
+	<p><slide>The most important result is the waiting time: on the night, the cloakroom team and I had no queue, or a very short one, with less than 5 minutes of waiting against 1 hour in the previous editions. In total, we registered around 1,100 entries, knowing that we generally put 2 to 3 items on each hanger.</slide></p>
+	<p><slide>Thanks to the scanning program, we were also able to extract the data of the entries to analyze the flow of people. We used 4 computers from 7pm to 8pm to welcome the guests of the dinner, with an average attendance of 0.88 person per minute and peaks of 1 person per minute around 7:30pm and 8pm. Then we went up to 7 computers from 10pm to the closing. This second part of the night was much more intense, with 1.1 persons per minute on average and more than 1 person per minute between 10:50pm and 11:50pm, before going back to 0.8 person per minute or less, with a last peak around 0.7 person per minute at 12:30am. From experience, the first guests (mostly the ones of the dinner) start to pick up their clothes around 12:30am, and the others from 1am until the end of the event.</slide></p>
+	<figure>
+	  <img src="cloakroom_affluence.png" alt="Number of deposits per 10 minutes during the night">
+	  <figcaption>Attendance graph given by the program: number of deposits per 10 minutes (entries only)</figcaption>
+	</figure>
+	<p><slide>What should be improved:</slide></p>
+	<ul>
+	<li>The computers were not connected to each other, so at the exit we had to find the right computer to know where the clothes were stored. A database shared between all the computers is the main improvement for the next edition.</li>
+	<li>The program accepted any QR code presented by the guest. It should check that the QR code is really an entry ticket (and not a meal or a bottle of champagne ticket), and every computer should be able to search for the guests who lost their QR code.</li>
+	<li>The exits were not recorded, so we have no reliable data on when the guests leave. Moreover, several people sometimes shared the same hanger, which can distort the data a little.</li>
+	<li>The entry flow was naturally well guided, but there was no dedicated exit, so the entry and exit flows often crossed each other. An exit lane should be planned for the next edition.</li>
+	</ul>
+	<p><slide>Thanks to this project, I understood the usefulness of industrial engineering tools such as the takt time or the Gantt diagram, and I also got to live a beautiful human project, as part of the quest to improve the Gala.</slide></p>
       </section>
     </main>
   </div>

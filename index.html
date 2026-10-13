@@ -3,118 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Auguste VANIER - Page personnelle</title>
-  <style>
-    slide {
-	    animation-duration: 3s;
-	    animation-name: slidein;
-	  }
-
-	  @keyframes slidein {
-	    from {
-	      margin-left: 100%;
-	      width: 300%;
-	    }
-	    to {
-	      margin-left: 0%;
-	      width: 100%;
-	    }
-    }
-
-    body {
-      font-family: Georgia, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
-
-    header {
-      color: #2784b3;
-      padding: 20px;
-      text-align: center;
-      background-image: url("atels.jpg");
-      background-color: transparent;
-    }
-
-    nav {
-      background-color: #eee;
-      padding: 10px 20px;
-      display: flex;
-      gap: 15px;
-    }
-
-    nav a {
-      color: #2784b3;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .container {
-      display: flex;
-      padding: 20px;
-    }
-
-    .sidebar {
-      width: 260px;
-      margin-right: 30px;
-    }
-
-    .sidebar img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .content {
-      flex: 1;
-    }
-
-    h2 {
-      color: #2784b3;
-    }
-
-    footer {
-      background-color: #eee;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <h1>Auguste VANIER</h1>
-    <p>Student, Mecahnical and Industrial Engineering, Arts et Métiers ParisTech</p>
+    <p>MS Mechanical Engineering student at Stanford University · Double degree with Arts et Métiers Institute of Technology</p>
   </header>
 
   <nav>
     <a href="biographie.html">Biography</a>
-    <a href="academical_project.html">Academical Projects</a>
+    <a href="academical_project.html">Academic Projects</a>
     <a href="experiences.html">Experiences</a>
     <a href="index.html">Home</a>
   </nav>
 
   <div class="container">
     <aside class="sidebar">
-      <img src="Photo_identite.jpg" alt="Photo de profil">
-      <p><strong>Email :</strong> vanier.auguste@gmail.com</p>
+      <img src="Photo_profil.jpg" alt="Auguste Vanier">
+      <p><strong>Email :</strong> <a href="mailto:avanier@stanford.edu">avanier@stanford.edu</a></p>
       <p><strong>Phone :</strong> +33 7 85 43 37 18</p>
-      <p><strong>Localisation :</strong> Bourg-en-Bresse, France</p>
+      <p><strong>Location :</strong> Stanford, California, US</p>
       <p><strong>Linkedin :</strong> <a href="https://fr.linkedin.com/in/vanier-auguste-1b917422b/">My Linkedin page</a></p>
     </aside>
 
     <main class="content">
       <section id="bio">
         <h2>Welcome</h2>
-        <p><slide>Hello, I am Auguste Vanier and on this website you will found out all the informations about me, my passions, my projects and my experiences</slide></p>
-	<p><slide>Do not hesitate to contact me for further informations on anything related to my project, my ambition or else</slide></p>
+        <p><slide>Hello, I am Auguste Vanier and on this website you will find all the information about me, my passions, my projects and my experiences</slide></p>
+	<p><slide>I am currently a Master of Science student in Mechanical Engineering at Stanford University, in double degree with the Arts et Métiers Institute of Technology, seeking a Summer 2027 internship in agricultural machinery design and development. I bring dealership and production-line experience, together with robotics and autonomy coursework.</slide></p>
+	<p><slide>Do not hesitate to contact me for further information on anything related to my projects, my ambitions or anything else</slide></p>
       </section>
 
       <section id="research">
-        <h2>Academical Project</h2>
-        <p><slide>For years now, I am using my knowledge to build project around problematics such as the <a href="academical_project.html">academical projects</a> listed below. Feel free to click on the pictures for further informations</slide></p>
-	<slide>
+        <h2>Academic Project</h2>
+        <p><slide>For years now, I have been using my knowledge to build projects around real problems, such as the <a href="academical_project.html">academic projects</a> listed below. Feel free to click on the pictures for further information</slide></p>
+	<slide class="gallery">
+	<a href="robot_autonomy.html"><img src="autonomy_rrt_shortcut.png" alt="Robot path planning"></a>
 	<a href="academical_project_snowb.html"><img src="chenille.jpg" alt="Photo projet1" width=30% height=10%></a>
 	<a href="TIPE.html"><img src="bouclier_solidworks.png" alt="Photo projet2" width=31.5% height=10%></a>
 	<a href="exchanger.html"><img src="Plan_echangeur.PNG" alt="Photo projet2" width=31.5% height=10%></a>

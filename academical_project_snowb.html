@@ -3,100 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Auguste VANIER - Page personnelle</title>
-  <style>
-    slide {
-	    animation-duration: 3s;
-	    animation-name: slidein;
-	  }
-
-	  @keyframes slidein {
-	    from {
-	      margin-left: 100%;
-	      width: 300%;
-	    }
-	    to {
-	      margin-left: 0%;
-	      width: 100%;
-	    }
-    }
-
-    body {
-      font-family: Georgia, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
-
-    header {
-      background-image: url("atels.jpg");
-      background-color: transparent;
-      color: #2784b3;
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #eee;
-      padding: 10px 20px;
-      display: flex;
-      gap: 15px;
-    }
-
-    subnav {
-      background-color: #9697a3;
-      display: flex;
-      gap: 15px;
-    }
-	  
-    nav a {
-      color: #2784b3;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .container {
-      display: flex;
-      padding: 20px;
-    }
-
-    .sidebar {
-      width: 260px;
-      margin-right: 30px;
-    }
-
-    .sidebar img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .content {
-      flex: 1;
-    }
-
-    h2 {
-      color: #2784b3;
-    }
-
-    footer {
-      background-color: #eee;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <h1>Auguste VANIER</h1>
-    <p>Student, Mechanical and Industrial Engineering, Arts et Métiers ParisTech</p>
+    <p>MS Mechanical Engineering student at Stanford University · Double degree with Arts et Métiers Institute of Technology</p>
   </header>
 
   <nav>
-    <a href="academical_project.html">Academical Project</a>
+    <a href="academical_project.html">Academic Project</a>
     <subnav>
-	    <a href="cloakroom.html">Cloakroom</a>
+	    <a href="robot_autonomy.html">Autonomy</a>
+		<a href="cloakroom.html">Cloakroom</a>
 	    <a href="exchanger.html">Heater</a>
 		<a href="factory_robot.html">Robot</a>
 		<a href="TIPE.html">Rugby</a>
@@ -107,20 +28,20 @@
 
   <div class="container">
     <aside class="sidebar">
-      <img src="Photo_identite.jpg" alt="Photo de profil">
-      <p><strong>Email :</strong> vanier.auguste@gmail.com</p>
+      <img src="Photo_profil.jpg" alt="Auguste Vanier">
+      <p><strong>Email :</strong> <a href="mailto:avanier@stanford.edu">avanier@stanford.edu</a></p>
       <p><strong>Phone :</strong> +33 7 85 43 37 18</p>
-      <p><strong>Localisation :</strong> Bourg-en-Bresse, France</p>
+      <p><strong>Location :</strong> Stanford, California, US</p>
       <p><strong>Linkedin :</strong> <a href="https://fr.linkedin.com/in/vanier-auguste-1b917422b/">My Linkedin page</a></p>
     </aside>
 
     <main class="content">
       <section id="research">
         <h2>"SnowBoost" Project (60 hrs) </h2>
-        <p><slide>This was my first academical project, realized in high school. This project had to respond to a general problematic asked by the Engineering science Olympiad committee: Transport. With my team, we rapidly decided to design a snowboarding device able to help stuck snowboarders to move when they were on a flat surface. Because among the team of three we were all confronted with the same problem we decided to solve this issue together.</slide></p>
+        <p><slide>This was my first academic project, carried out in high school. It had to answer a general theme set by the Engineering Science Olympiad committee: Transport. With my team of three, we quickly decided to design a device able to help snowboarders move when they are stuck on a flat surface, because we had all been confronted with this problem.</slide></p>
 	<slide><img src="chenille.jpg" alt="Photo projet1" width=50% height=50%></slide>
-	<p><slide>During this project, we designed a 2-part caterpillar in 3D in which we were able to insert metal plates to assure the motricity of the device. In fact, through previous study, we tested the friction coefficient of various polymeric materials and we conclude that the most important critera was the geometric. Then we dimensioned the CC motor to respond to the torque and speed needed to respect our technical specifications. As the motor was dimensioned, we calculated the battery capacity to respect the 4h long autonomy specification and isolated it from the cold to keep the battery specifications at their best. Finally, we created a remote control to handle the speed of the motor in which we also added a LCD screen with the slope and the battery level</slide></p>
-	<p><slide>Thanks to our hard work, we reached the final contest of the regional Olympiad.</slide></p>
+	<p><slide>During this project, we designed a 2-part track in 3D, in which we inserted metal plates to ensure the traction of the device. In a previous study, we tested the friction coefficient of various polymer materials and concluded that the most important criterion was the geometry. Then we sized the DC motor to provide the torque and speed required by our technical specifications. Once the motor was sized, we calculated the battery capacity needed for the 4-hour autonomy specification, and insulated the battery from the cold to keep its performance at its best. Finally, we built a remote control to set the speed of the motor, to which we added an LCD screen showing the slope and the battery level.</slide></p>
+	<p><slide>Thanks to our hard work, we reached the final of the regional Olympiad.</slide></p>
       </section>
     </main>
   </div>

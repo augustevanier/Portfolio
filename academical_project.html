@@ -3,124 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <title>Auguste VANIER - Page personnelle</title>
-  <style>
-    slide {
-	    animation-duration: 3s;
-	    animation-name: slidein;
-	  }
-
-	  @keyframes slidein {
-	    from {
-	      margin-left: 100%;
-	      width: 300%;
-	    }
-	    to {
-	      margin-left: 0%;
-	      width: 100%;
-	    }
-    }
-
-    body {
-      font-family: Georgia, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
-
-    header {
-      background-image: url("atels.jpg");
-      background-color: transparent;
-      color: #2784b3;
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #eee;
-      padding: 10px 20px;
-      display: flex;
-      gap: 15px;
-    }
-
-    nav a {
-      color: #2784b3;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .container {
-      display: flex;
-      padding: 20px;
-    }
-
-    .sidebar {
-      width: 260px;
-      margin-right: 30px;
-    }
-
-    .sidebar img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .content {
-      flex: 1;
-    }
-
-    h2 {
-      color: #2784b3;
-    }
-
-    footer {
-      background-color: #eee;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <h1>Auguste VANIER</h1>
-    <p>Student, Mecahnical and Industrial Engineering, Arts et Métiers ParisTech</p>
+    <p>MS Mechanical Engineering student at Stanford University · Double degree with Arts et Métiers Institute of Technology</p>
   </header>
  
   <nav>
     <a href="biographie.html">Biography</a>
-    <a href="academical_project.html">Academical Projects</a>
+    <a href="academical_project.html">Academic Projects</a>
     <a href="experiences.html">Experiences</a>
     <a href="index.html">Home</a>
   </nav>
 
   <div class="container">
     <aside class="sidebar">
-      <img src="Photo_identite.jpg" alt="Photo de profil">
-      <p><strong>Email :</strong> vanier.auguste@gmail.com</p>
+      <img src="Photo_profil.jpg" alt="Auguste Vanier">
+      <p><strong>Email :</strong> <a href="mailto:avanier@stanford.edu">avanier@stanford.edu</a></p>
       <p><strong>Phone :</strong> +33 7 85 43 37 18</p>
-      <p><strong>Localisation :</strong> Bourg-en-Bresse, France</p>
+      <p><strong>Location :</strong> Stanford, California, US</p>
       <p><strong>Linkedin :</strong> <a href="https://fr.linkedin.com/in/vanier-auguste-1b917422b/">My Linkedin page</a></p>
     </aside>
 
     <main class="content">
       <section id="academical_project">
-        <h2>Academical Projects</h2>
+        <h2>Academic Projects</h2>
 	
+		<h2><a href="robot_autonomy.html">Pathfinding, Driving Control and Disturbance Rejection for an Autonomous Robot</a></h2>
+		<p><strong>Stanford University – AA Department · Sept–Dec 2026 (ongoing) · 70 hrs</strong></p>
+		<slide><a href="robot_autonomy.html"><img src="autonomy_rrt_shortcut.png" alt="RRT path planning" width=50% height=30%></a></slide>
+		<p>
+		Project under the supervision of Prof. S. Bansal on the navigation and control of an autonomous robot.
+		</p>
+		<ul>
+		<li>Developing path finding and path optimization algorithms for robot navigation (ROS, Python).</li>
+		<li>Implementing driving control and disturbance rejection (PID control, discrete-time systems).</li>
+		</ul>
+
 		<h2><a href="cloakroom.html">Process Optimization – School Gala</a></h2>
 		<p><strong>"La Nuit des Fignoss" – Arts et Métiers</strong></p>
-		<slide><a href="cloakroom.html"><img src="cloakroom.PNG" alt="cloakroom plan" width=50% height=30%></a></slide>
+		<slide><a href="cloakroom.html"><img src="cloakroom_plan.svg" alt="cloakroom plan" width=50% height=30%></a></slide>
 		<p>
-		Development of a new organization to improve guests experience
+		Development of a new organization to improve the guests' experience
 		</p>
 		<ul>
 		<li>Redesigned cloakroom organization for a large-scale student event.</li>
 		<li>Analyzed customer flow and service bottlenecks.</li>
-		<li>Reduced takt time by a factor of three while improving service quality.</li>
+		<li>Reduced the waiting time from 1 hour to less than 5 minutes while improving service quality.</li>
 		</ul>
 
 		<h2><a href="exchanger.html">Thermal Storage Heater and Water Flow Study</a></h2>
-		<p><strong>Arts et Métiers – LMFL Laboratory</strong></p>
+		<p><strong>Arts et Métiers – LMFL Laboratory · Feb–Jun 2025 · 80 hrs</strong><br>Under the supervision of Prof. S. Simonet (LMFL) and P. Carpentier (LISPEN)</p>
 		<slide><a href="exchanger.html"><img src="Plan_echangeur.PNG" alt="exchanger plan" width=50% height=30%></a></slide>
 		<p>
 		Study of water flow behavior and thermal storage efficiency applied to energy upcycling systems.
@@ -132,7 +69,7 @@
 		</ul>
 
 		<h2><a href="factory_robot.html">Visual Detection System for Dismantling Line</a></h2>
-		<p><strong>Arts et Métiers – LISPEN Laboratory</strong></p>
+		<p><strong>Arts et Métiers – LISPEN Laboratory · Sept 2024–Jan 2025 · 70 hrs</strong><br>Under the supervision of Prof. A. Olabi and R. Bearee (LISPEN)</p>
 		<slide><a href="factory_robot.html"><img src="poste.png" alt="work station" width=50% height=30%></a></slide>
 		<p>
 		Development of a camera-based detection system to assist automated dismantling operations in an industrial context.
@@ -160,12 +97,12 @@
 		<p><strong>High School – Lycée Aux Lazaristes-Lasalle</strong></p>
 		<slide><a href="academical_project_snowb.html"><img src="chenille.jpg" alt="Photo projet1" width=50% height=50%></a></slide>
 		<p>
-		Design and development of a device helping snowboarder when they are stuck on a flat surface 
-		so they do not need to untight their boots to push by themself
+		Design and development of a device helping snowboarders when they are stuck on a flat surface,
+		so they do not need to unstrap their bindings to push themselves
 		</p>
 		<ul>
 		<li>Experimental comparison of various PLA (material for 3D printing) to test the friction coefficient. </li>
-		<li>Dynamic analysis of spring characteristics to keep the caterpillar on the snow.</li>
+		<li>Dynamic analysis of spring characteristics to keep the track on the snow.</li>
 		<li>Integration of sensing and electrical subsystems into a functional prototype in order to get the slope gradient.</li>
 		</ul>
 

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Auguste VANIER - Page personnelle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Auguste VANIER</h1>
+    <p>MS Mechanical Engineering student at Stanford University · Double degree with Arts et Métiers Institute of Technology</p>
+  </header>
+
+  <nav>
+    <a href="academical_project.html">Academic Project</a>
+    <subnav>
+		<a href="robot_autonomy.html">Autonomy</a>
+		<a href="cloakroom.html">Cloakroom</a>
+	    <a href="exchanger.html">Heater</a>
+		<a href="factory_robot.html">Robot</a>
+		<a href="TIPE.html">Rugby</a>
+		<a href="academical_project_snowb.html">Snowboard</a>
+    </subnav>
+    <a href="index.html">Home</a>
+  </nav>
+
+  <div class="container">
+    <aside class="sidebar">
+      <img src="Photo_profil.jpg" alt="Auguste Vanier">
+      <p><strong>Email :</strong> <a href="mailto:avanier@stanford.edu">avanier@stanford.edu</a></p>
+      <p><strong>Phone :</strong> +33 7 85 43 37 18</p>
+      <p><strong>Location :</strong> Stanford, California, US</p>
+      <p><strong>Linkedin :</strong> <a href="https://fr.linkedin.com/in/vanier-auguste-1b917422b/">My Linkedin page</a></p>
+    </aside>
+
+    <main class="content">
+      <section id="research">
+        <h2>Path finding and path optimization for an autonomous robot (70 hrs, ongoing)</h2>
+        <p><strong>Stanford University – AA Department · Sept–Dec 2026 · Under the supervision of Prof. S. Bansal</strong></p>
+        <p><slide>This project is part of the Principles of Robot Autonomy I course at Stanford. The goal is to make a mobile robot (a TurtleBot running on ROS) go from a start point to a goal point in an environment full of obstacles, without hitting any of them and with the best possible trajectory. I coded two families of planners in Python: a grid-based one (A*) and a sampling-based one (RRT), and then I worked on the optimization of the paths they give.</slide></p>
+
+        <h3>A* path finding</h3>
+        <p><slide>A* explores a grid from the start point and always expands first the node that seems the closest to the goal. I implemented it on an 8-connected grid (the robot can move straight or in diagonal).</slide></p>
+        <div class="figure-row">
+          <figure>
+            <img src="autonomy_astar_simple.png" alt="A* path in a simple environment">
+            <figcaption>A* path in the simple environment</figcaption>
+          </figure>
+          <figure>
+            <img src="autonomy_astar_cluttered.png" alt="A* path in a random cluttered environment">
+            <figcaption>A* path in a random cluttered environment</figcaption>
+          </figure>
+        </div>
+        <p><slide>In the simple environment, the path found is the shortest one possible with this grid. In the cluttered environment, we can see that the whole grid was not explored (the light dots are the explored nodes): the algorithm only spends time in the direction of the goal, and the path still seems to be the fastest one.</slide></p>
+
+        <h3>Path smoothing</h3>
+        <p><slide>The A* path is made of straight segments with sharp angles, which a real robot cannot follow properly. I smoothed it with a cubic spline, for a desired speed of 0.15 m/s and a smoothing parameter α = 0.1.</slide></p>
+        <figure>
+          <img src="autonomy_smooth_trajectory.png" alt="Original A* path and smoothed path">
+          <figcaption>A* path (blue) and cubic-spline smoothed path (red)</figcaption>
+        </figure>
+        <p><slide>The smoothed path gives a better trajectory while being even a bit shorter in this case. However, the smoothing has to stay reasonable: the bigger α is, the more the spline is allowed to move away from the nodes. It can then cut corners, miss the start point or the goal point, or even hit an obstacle, as no collision check is run on the smoothed path.</slide></p>
+
+        <h3>Choosing the heuristic</h3>
+        <p><slide>The heuristic is the way A* estimates the remaining distance to the goal. I compared three of them, and a weighted version where the heuristic counts three times more (w = 3).</slide></p>
+        <figure>
+          <img src="autonomy_heuristic_comparison.png" alt="A* paths for different heuristics">
+          <figcaption>A* paths for the different heuristics in the same environment</figcaption>
+        </figure>
+        <table>
+          <thead>
+            <tr><th>Heuristic</th><th>Weight w</th><th>Path length</th><th>Nodes expanded</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Euclidean (L2)</td><td>1.0</td><td>9.201</td><td>1,091</td></tr>
+            <tr><td>Manhattan (L1)</td><td>1.0</td><td>9.201</td><td>318</td></tr>
+            <tr><td>Chebyshev (L∞)</td><td>1.0</td><td>9.201</td><td>1,965</td></tr>
+            <tr><td>Euclidean (L2)</td><td>3.0</td><td>9.898</td><td>146</td></tr>
+          </tbody>
+        </table>
+        <p><slide>With w = 1, the three heuristics find a path of the same length, but not with the same effort: the closer the heuristic is to the true remaining distance, the fewer nodes are needed (318 for L1 against 1,965 for L∞). With w = 3, the path is 7.6% longer but the algorithm expands 7.5 times fewer nodes than with w = 1. It is a trade-off between the quality of the path and the computation time, which matters on an embedded computer.</slide></p>
+
+        <h3>RRT and shortcutting</h3>
+        <p><slide>The Rapidly-exploring Random Tree (RRT) does not use a grid: it grows a tree by picking random points in the free space until one branch reaches the goal. The path it finds is good but not optimal, so I added a shortcutting step which removes the useless detours.</slide></p>
+        <div class="figure-row">
+          <figure>
+            <img src="autonomy_rrt_geometric.png" alt="RRT tree and solution path">
+            <figcaption>RRT tree and solution path</figcaption>
+          </figure>
+          <figure>
+            <img src="autonomy_rrt_shortcut.png" alt="RRT path before and after shortcutting">
+            <figcaption>Path before (purple) and after (green) shortcutting</figcaption>
+          </figure>
+        </div>
+        <p><slide>The shortcutting gives a clearly shorter path. It would be interesting to apply the smoothing algorithm to it afterward!</slide></p>
+
+        <h3>Goal bias</h3>
+        <p><slide>With a probability p, the tree tries to grow directly toward the goal instead of toward a random point. I ran 20 trials for each value of p, with at most 2,000 iterations.</slide></p>
+        <figure>
+          <img src="autonomy_goal_bias.png" alt="Success rate and mean iterations for each goal bias">
+          <figcaption>Success rate (left) and mean number of iterations (right) for each goal bias p</figcaption>
+        </figure>
+        <table>
+          <thead>
+            <tr><th>Goal bias p</th><th>Success rate</th><th>Mean iterations</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0.00</td><td>0%</td><td>2,000.0</td></tr>
+            <tr><td>0.05</td><td>100%</td><td>391.9</td></tr>
+            <tr><td>0.20</td><td>100%</td><td>404.2</td></tr>
+            <tr><td>0.50</td><td>100%</td><td>615.1</td></tr>
+            <tr><td>0.90</td><td>20%</td><td>1,956.7</td></tr>
+          </tbody>
+        </table>
+        <p><slide>The best value seems to be near p = 0.05. With p = 0, no direction is prioritized, so it is very unlikely to reach the goal only with randomness. On the opposite, with p = 0.9 the tree nearly only tries to go straight to the goal and has very few chances to explore the other directions needed to go around the obstacles, which explains the 20% success rate.</slide></p>
+
+        <h3>Next steps</h3>
+        <p><slide>We are now working on the driving control of the robot and on disturbance rejection (PID control, discrete-time systems). This part will be added here once it is finished.</slide></p>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    &copy; 2025 Vanier Auguste – personal website
+  </footer>
+
+</body>
+</html>
