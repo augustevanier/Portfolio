@@ -17,6 +17,7 @@
     <a href="academical_project.html">Academic Project</a>
     <subnav>
 		<a href="robot_autonomy.html">Autonomy</a>
+		<a href="decision_making.html">Decision</a>
 		<a href="cloakroom.html">Cloakroom</a>
 	    <a href="exchanger.html">Heater</a>
 		<a href="factory_robot.html">Robot</a>
@@ -37,9 +38,12 @@
 
     <main class="content">
       <section id="research">
-        <h2>Path finding and path optimization for an autonomous robot (70 hrs, ongoing)</h2>
+        <h2>Path finding, control and perception for an autonomous robot (70 hrs, ongoing)</h2>
         <p><strong>Stanford University – AA Department · Sept–Dec 2026 · Under the supervision of Prof. S. Bansal</strong></p>
-        <p><slide>This project is part of the Principles of Robot Autonomy I course at Stanford. The goal is to make a mobile robot (a TurtleBot running on ROS) go from a start point to a goal point in an environment full of obstacles, without hitting any of them and with the best possible trajectory. I coded two families of planners in Python: a grid-based one (A*) and a sampling-based one (RRT), and then I worked on the optimization of the paths they give.</slide></p>
+        <p><slide>This project is part of the Principles of Robot Autonomy I course at Stanford. It covers the three questions an autonomous robot has to answer: where to go (planning), how to get there (control) and what is around it (perception).</slide></p>
+
+        <h2>Path finding and path optimization</h2>
+        <p><slide>The goal is to make a mobile robot (a TurtleBot running on ROS) go from a start point to a goal point in an environment full of obstacles, without hitting any of them and with the best possible trajectory. I coded two families of planners in Python: a grid-based one (A*) and a sampling-based one (RRT), and then I worked on the optimization of the paths they give.</slide></p>
 
         <h3>A* path finding</h3>
         <p><slide>A* explores a grid from the start point and always expands first the node that seems the closest to the goal. I implemented it on an 8-connected grid (the robot can move straight or in diagonal).</slide></p>
@@ -116,8 +120,110 @@
         </table>
         <p><slide>The best value seems to be near p = 0.05. With p = 0, no direction is prioritized, so it is very unlikely to reach the goal only with randomness. On the opposite, with p = 0.9 the tree nearly only tries to go straight to the goal and has very few chances to explore the other directions needed to go around the obstacles, which explains the 20% success rate.</slide></p>
 
-        <h3>Next steps</h3>
-        <p><slide>We are now working on the driving control of the robot and on disturbance rejection (PID control, discrete-time systems). This part will be added here once it is finished.</slide></p>
+        <h2>Trajectory optimization and control of a drone in the wind</h2>
+        <p><slide>Once a path is found, the robot still has to follow it. In this second part, I computed optimal trajectories by solving an optimization problem, and then I designed a controller (LQR) that keeps a planar quadrotor on its nominal trajectory despite a strong wind.</slide></p>
+
+        <h3>Trajectory optimization</h3>
+        <p><slide>A unicycle robot has to go from (0, 0) to (5, 5) while avoiding a circular obstacle. I discretized the trajectory in N steps and wrote it as a nonlinear program: the decision variables are the final time, the states and the controls, the cost is ∫(α + v² + ω²)dt, and the dynamics, the obstacle and the speed limits are constraints. The parameter α sets the trade-off between going fast (time cost) and saving energy.</slide></p>
+        <figure>
+          <img src="autonomy_trajopt_alpha.png" alt="Optimal trajectories for different values of alpha" style="max-width:300px">
+          <figcaption>Optimal trajectories for α ∈ {0.04, 0.09, 0.25, 1, 20}</figcaption>
+        </figure>
+        <p><slide>On a straight line, the cost is minimized for v* = √α (capped by v<sub>max</sub> = 0.5 m/s). The optimizer agrees with this: the median speed is 0.197 m/s for α = 0.04 (prediction 0.2) and 0.494 m/s for α = 0.25 (prediction 0.5). With α = 20, time is so expensive that the robot saturates its speed and takes the shortest path, very close to the obstacle.</slide></p>
+
+        <h3>Gain-scheduled LQR on a planar quadrotor</h3>
+        <p><slide>The drone has 6 states (position, pitch angle and their speeds) and 2 controls (the thrust of each motor). Along the nominal trajectory, I linearized the dynamics at each step and computed an LQR gain K<sub>j</sub> (a 2 × 6 matrix), so that the command becomes u = u*<sub>j</sub> − K<sub>j</sub>(x − x*<sub>j</sub>).</slide></p>
+        <div class="figure-row">
+          <figure>
+            <img src="autonomy_lqr_wind.png" alt="Gain-scheduled LQR in the wind">
+            <figcaption>Gain-scheduled LQR in the wind (original weights)</figcaption>
+          </figure>
+          <figure>
+            <img src="autonomy_lqr_r100.png" alt="Gain-scheduled LQR with R scaled by 100">
+            <figcaption>Same controller with the control weight R × 100</figcaption>
+          </figure>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Controller</th><th>Miss distance</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Open loop</td><td>8.188 m</td></tr>
+            <tr><td>Time-indexed LQR</td><td>0.603 m</td></tr>
+            <tr><td>Hover LQR (one single gain)</td><td>0.608 m</td></tr>
+            <tr><td>Nearest-state LQR</td><td>10.348 m</td></tr>
+            <tr><td>Time-indexed LQR, R × 100</td><td>2.186 m</td></tr>
+          </tbody>
+        </table>
+        <p><slide>Without feedback, the wind pushes the drone 8 m away from its goal; with the time-indexed LQR it stays within 0.6 m. When the control is made 100 times more expensive, the controller only makes small corrections and cannot fight the wind anymore. Interestingly, a single gain computed at hover works nearly as well: along this trajectory the pitch never exceeds 0.33 rad, so cos φ ≈ 1 and sin φ ≈ φ, and the linearized models are almost the same as at hover. Gain scheduling would pay off for more aggressive maneuvers. Choosing the gain of the nearest state instead of the current time fails: the wind pushes the drone back toward earlier states, and it ends up looping between the first indices.</slide></p>
+
+        <h2>Perception: camera pose, robust estimation and object detection</h2>
+        <p><slide>To navigate, the robot also needs to understand what it sees. In this third part, I worked on the main building blocks of robot perception.</slide></p>
+
+        <h3>Camera extrinsics from a checkerboard</h3>
+        <p><slide>From the detected corners of a checkerboard and the intrinsic matrix K, I recovered the position and orientation of the camera (R, t) with a homography, then projected the result onto the closest true rotation matrix. The reprojection error is 3.30 px. Scaling the focal lengths by 1.05 reduces it to 1.54 px, which suggests that the given K is slightly off.</slide></p>
+        <figure>
+          <img src="autonomy_extrinsics.png" alt="Detected and reprojected checkerboard corners">
+          <figcaption>Detected and reprojected corners, with a hidden point cloud projected onto the board</figcaption>
+        </figure>
+
+        <h3>RANSAC</h3>
+        <p><slide>When some point correspondences are wrong, a least-squares fit is ruined because a few outliers weigh a lot in the sum of squared errors. RANSAC repeatedly fits a homography on 4 random correspondences (the minimum, since a homography has 8 degrees of freedom) and keeps the model with the most inliers. With p = 0.99 and an inlier ratio of 0.7, 17 iterations are enough.</slide></p>
+        <figure>
+          <img src="autonomy_ransac.png" alt="RANSAC inliers and outliers" style="max-width:360px">
+          <figcaption>Inliers (green) and outliers (red) found by RANSAC</figcaption>
+        </figure>
+        <p><slide>The rotation error goes from 93.96° with least squares to 0.27° with RANSAC.</slide></p>
+
+        <h3>Iterative Closest Point (ICP)</h3>
+        <p><slide>ICP aligns a 3D scan onto a model by alternating two steps: matching each point to its nearest neighbor, then computing the best rigid transform (with an SVD).</slide></p>
+        <div class="figure-row">
+          <figure>
+            <img src="autonomy_icp.png" alt="Scan aligned to the model by ICP">
+            <figcaption>Scan aligned to the model after ICP</figcaption>
+          </figure>
+          <figure>
+            <img src="autonomy_icp_clutter.png" alt="ICP on a cluttered scan">
+            <figcaption>Cluttered scan with and without outlier rejection</figcaption>
+          </figure>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Initial offset</th><th>Iterations</th><th>Rotation error</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>15°</td><td>35</td><td>0.05°</td></tr>
+            <tr><td>30°</td><td>43</td><td>0.05°</td></tr>
+            <tr><td>60°</td><td>56</td><td>0.05°</td></tr>
+            <tr><td>90°</td><td>100</td><td>144.68°</td></tr>
+            <tr><td>120°</td><td>78</td><td>144.66°</td></tr>
+          </tbody>
+        </table>
+        <p><slide>ICP converges well up to 60°, but from 90° the nearest-neighbor matches are wrong and the algorithm gets stuck in a local minimum. When the scan includes the floor, rejecting the matches farther than 5 mm reduces the rotation error from 9.77° to 0.11°.</slide></p>
+
+        <h3>Evaluating an object detector</h3>
+        <p><slide>Finally, I evaluated a pretrained detector (PyTorch) with precision, recall and average precision (AP), and implemented non-maximum suppression (NMS), which removes the duplicate boxes around the same object.</slide></p>
+        <figure>
+          <img src="autonomy_detection_pr.png" alt="Precision-recall curves" style="max-width:360px">
+          <figcaption>Precision–recall curves for the airplanes of an airport image</figcaption>
+        </figure>
+        <table>
+          <thead>
+            <tr><th>Score threshold</th><th>Detections</th><th>Precision</th><th>Recall</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0.70</td><td>3</td><td>1.000</td><td>0.429</td></tr>
+            <tr><td>0.50</td><td>5</td><td>0.800</td><td>0.571</td></tr>
+            <tr><td>0.30</td><td>19</td><td>0.316</td><td>0.857</td></tr>
+            <tr><td>0.10</td><td>324</td><td>0.022</td><td>1.000</td></tr>
+          </tbody>
+        </table>
+        <p><slide>A lower threshold finds more planes but adds many false detections. NMS raises the AP from 0.438 to 0.693, because without it the duplicate boxes count as false positives. I also ran the detector on a picture of my choice:</slide></p>
+        <figure>
+          <img src="autonomy_detection_tractor.png" alt="Detections on a picture of tractors" style="max-width:100%">
+          <figcaption>Detections before (left) and after (right) NMS: 11 boxes become 2</figcaption>
+        </figure>
+        <p><slide>The two tractors are found, but labelled as "truck" and "motorcycle" since the detector was trained on a dataset (COCO) with no tractor class, and the seeder behind them is missed. A detector fine-tuned on agricultural machinery would be needed for this kind of application!</slide></p>
       </section>
     </main>
   </div>

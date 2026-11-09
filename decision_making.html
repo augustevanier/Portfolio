@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Auguste VANIER - Page personnelle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Auguste VANIER</h1>
+    <p>MS Mechanical Engineering student at Stanford University · Double degree with Arts et Métiers Institute of Technology</p>
+  </header>
+
+  <nav>
+    <a href="academical_project.html">Academic Project</a>
+    <subnav>
+		<a href="robot_autonomy.html">Autonomy</a>
+		<a href="decision_making.html">Decision</a>
+		<a href="cloakroom.html">Cloakroom</a>
+	    <a href="exchanger.html">Heater</a>
+		<a href="factory_robot.html">Robot</a>
+		<a href="TIPE.html">Rugby</a>
+		<a href="academical_project_snowb.html">Snowboard</a>
+    </subnav>
+    <a href="index.html">Home</a>
+  </nav>
+
+  <div class="container">
+    <aside class="sidebar">
+      <img src="Photo_profil.jpg" alt="Auguste Vanier">
+      <p><strong>Email :</strong> <a href="mailto:avanier@stanford.edu">avanier@stanford.edu</a></p>
+      <p><strong>Phone :</strong> +33 7 85 43 37 18</p>
+      <p><strong>Location :</strong> Stanford, California, US</p>
+      <p><strong>Linkedin :</strong> <a href="https://fr.linkedin.com/in/vanier-auguste-1b917422b/">My Linkedin page</a></p>
+    </aside>
+
+    <main class="content">
+      <section id="research">
+        <h2>Decision making under uncertainty: reinforcement learning (ongoing)</h2>
+        <p><strong>Stanford University – AA228/CS238 Decision Making under Uncertainty · Sept–Dec 2026</strong></p>
+        <p><slide>This course teaches how an agent can choose good actions when the outcome of its actions is uncertain, using Markov decision processes (MDPs) and reinforcement learning. Below are two projects: learning policies from batch data, and our final project on buying shares without moving the market.</slide></p>
+
+        <h2>Learning policies from data (batch reinforcement learning)</h2>
+        <p><slide>For this project, we only receive a file of past experience: thousands of (state, action, reward, next state) samples, and we cannot interact with the environment. From these samples, I had to write a policy, that is an action for every state, for three problems of increasing size: small (100 states), medium (50,000 states) and large (302,020 states). The policies are then scored on a leaderboard.</slide></p>
+
+        <h3>Method: maximum likelihood model and value iteration</h3>
+        <p><slide>I used a model-based approach in Python. First I estimate the transition probabilities T(s'|s, a) and the rewards R(s, a) by counting what happened in the data. Then I solve this estimated MDP with value iteration, until the Bellman residual is below 10<sup>-6</sup>, and the policy takes the best action in each state. On small, the data covers all 400 state-action pairs about 125 times each, so this simple method is enough.</slide></p>
+        <figure>
+          <img src="decision_small_policy.png" alt="Small problem policy map" style="max-width:360px">
+          <figcaption>Policy found on the small problem (10 × 10 grid)</figcaption>
+        </figure>
+
+        <h3>Medium: filling the states that were never seen</h3>
+        <p><slide>The medium problem is a car that must reach a goal by controlling its acceleration, with the state encoding a position and a velocity. The problem is undiscounted, but I used γ = 0.999: it makes value iteration converge while the reward of the goal still propagates to the far states. The goal states only appear as next states in the data, so I treat them as terminal.</slide></p>
+        <p><slide>Only 22,530 of the 50,000 states appear in the data, but the policy is evaluated everywhere, so each unseen state needs an action. I decode every state into a position (s mod 500) and a velocity (⌊s / 500⌋), and give each unseen state the action of the nearest seen state, using the distance (Δpos)² + 20 (Δvel)², which gives the velocity more weight. The assumption is that the best action changes only gradually: two states with almost the same position and velocity should take the same action.</slide></p>
+        <figure>
+          <img src="decision_medium_policy.png" alt="Medium problem final policy" style="max-width:100%">
+          <figcaption>Final policy over position and velocity (red: brake / go back, blue: accelerate)</figcaption>
+        </figure>
+        <p><slide>Close to the data, the fill extends the policy smoothly. Far from it, it creates stripes with no physical meaning, but these states are probably never reached by the car. The fill still improved the leaderboard score.</slide></p>
+
+        <h3>Large: finding the hidden structure</h3>
+        <p><slide>Only 500 of the 302,020 states appear in the data. By analysing them, I found that they form five 10 × 10 grids. Actions 1–4 move to a neighbouring cell, and actions 5–9 teleport from a corner to another grid with about 80% success. One grid (block 30) gives rewards ten times bigger than the others, so every corner should teleport there with action 9. With plain maximum likelihood, some corners did not, because each corner only had a few samples per teleport action.</slide></p>
+        <p><slide>To fix this, I pooled the teleport samples of all 20 corners and used them as a Dirichlet prior: T̂(s'|s, a) = (N(s, a, s') + α P<sub>a</sub>(s')) / (N(s, a) + α). A larger α trusts the pooled data more than the corner's own samples. With α = 100 (the policy is the same for every α ≥ 10), every corner outside block 30 now chooses the teleport to the best grid. The 301,520 unseen states keep a default action: the seen states never lead to them, so they do not change the result as long as the evaluation starts from the seen states.</slide></p>
+        <figure>
+          <img src="decision_large_policy.png" alt="Large problem policy map with pooled teleport samples" style="max-width:100%">
+          <figcaption>Policy on the five grids; orange squares are the actions changed by pooling</figcaption>
+        </figure>
+        <table>
+          <thead>
+            <tr><th>Problem</th><th>States seen / total</th><th>γ</th><th>Iterations</th><th>Run time</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Small</td><td>100 / 100</td><td>0.95</td><td>303</td><td>0.2 s</td></tr>
+            <tr><td>Medium</td><td>22,530 / 50,000</td><td>0.999</td><td>282</td><td>24.3 s</td></tr>
+            <tr><td>Large</td><td>500 / 302,020</td><td>0.95</td><td>358</td><td>6.1 s</td></tr>
+          </tbody>
+        </table>
+        <p><slide>Run times are the median of 3 runs (Python 3, single thread). Value iteration stops when the Bellman residual drops below 10<sup>-6</sup>, which is reached on all three problems. It only loops over the states seen in the data, which is why large, despite its 302,020 states, runs faster than medium (23.2 s of the 24.3 s on medium are spent in value iteration, plus 0.9 s for the nearest-neighbour fill).</slide></p>
+
+        <h2>Final project: buying without moving the market (ongoing)</h2>
+        <p><strong>With William Belluot</strong></p>
+        <p><slide>A large investor, such as a pension fund, often needs to buy many more shares than what sellers offer at any given time. Buying everything at once consumes the cheapest offers of the order book and then more and more expensive ones, which pushes the price up: this is called market impact. Our goal is to learn a policy that buys a fixed number of shares before a deadline at the lowest possible cost, and to beat the strategies used in practice: buying everything immediately, buying equal amounts at every step, and the classical schedule of Almgren and Chriss (2000).</slide></p>
+
+        <h3>The MDP</h3>
+        <ul>
+          <li><strong>States:</strong> shares left to buy, time left, spread between the best ask and best bid, imbalance between buy and sell offers, and the price increase caused by our own recent purchases.</li>
+          <li><strong>Actions:</strong> how much to buy (nothing, a fraction or everything left) and with which order type: a market order (immediate but expensive) or a limit order (cheaper but may never be filled).</li>
+          <li><strong>Transitions:</strong> the price moves randomly and rises when we buy, part of this rise fades over time, and a limit order is filled with some probability.</li>
+          <li><strong>Rewards:</strong> starting price minus price paid, with a strong penalty for the shares left at the deadline.</li>
+        </ul>
+
+        <h3>Plan</h3>
+        <p><slide>We are working in three phases: (1) build a Python market simulator (random walk of the price, spread, traded volume and order book depth) and solve the MDP exactly with value iteration; (2) hide the model and train Q-learning and SARSA, comparing them to the exact solution; (3) calibrate the simulator on real order book data and evaluate all the policies on the average cost, its variability and the rate of completion before the deadline. The simulator is built, and the results will be added here once the project is finished.</slide></p>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    &copy; 2025 Vanier Auguste – personal website
+  </footer>
+
+</body>
+</html>
