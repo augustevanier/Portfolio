@@ -39,7 +39,7 @@
 
     <main class="content">
       <section id="research">
-        <h2>Path finding, control and perception for an autonomous robot (70 hrs, ongoing)</h2>
+        <h2>Path finding, control, perception and SLAM for an autonomous robot (70 hrs, ongoing)</h2>
         <p><strong>Stanford University – AA Department · Sept–Dec 2026 · Under the supervision of Prof. S. Bansal</strong></p>
         <p><slide>This project is part of the Principles of Robot Autonomy I course at Stanford. It covers the three questions an autonomous robot has to answer: where to go (planning), how to get there (control) and what is around it (perception).</slide></p>
 
@@ -225,6 +225,66 @@
           <figcaption>Detections before (left) and after (right) NMS: 11 boxes become 2</figcaption>
         </figure>
         <p><slide>The two tractors are found, but labelled as "truck" and "motorcycle" since the detector was trained on a dataset (COCO) with no tractor class, and the seeder behind them is missed. A detector fine-tuned on agricultural machinery would be needed for this kind of application!</slide></p>
+
+        <h2>Image features and SLAM</h2>
+        <p><slide>A robot that does not know its map has to build it while localizing itself in it: this is SLAM (Simultaneous Localization And Mapping). In this fourth part, I first coded the low-level image processing that gives the landmarks (filters and corners), and then I solved a SLAM problem with a factor graph.</slide></p>
+
+        <h3>Filters and Harris corners</h3>
+        <p><slide>I implemented 2D convolution from scratch and used it to smooth the image (moving average, Gaussian) and to compute its gradients with Sobel masks. From the gradients, the Harris detector finds the corners: the points where the image changes in every direction, which makes them much easier to recognize than a point on an edge.</slide></p>
+        <figure>
+          <img src="autonomy_filters.jpg" alt="Smoothing filters and image gradients" style="max-width:100%">
+          <figcaption>Smoothing filters (top) and Sobel gradients (bottom)</figcaption>
+        </figure>
+        <p><slide>Each corner is then described by the 15 × 15 patch of pixels around it, and matched to the most correlated patch in a second view of the scene, rotated by 8°.</slide></p>
+        <figure>
+          <img src="autonomy_matches.jpg" alt="Harris corners and matches between two views" style="max-width:100%">
+          <figcaption>157 corners detected, 111 correct matches (green) and 46 wrong ones (red)</figcaption>
+        </figure>
+        <p><slide>Some matches are wrong because two different places can look alike in such a small window, or because the true corner was not detected in the second view. A RANSAC step, like in the perception part, would remove them before estimating the motion between the two views.</slide></p>
+        <figure>
+          <img src="autonomy_rotation.png" alt="Corner repeatability and correct matches against rotation" style="max-width:420px">
+          <figcaption>Corner repeatability (blue) and correct matches (red) when the second view is rotated</figcaption>
+        </figure>
+        <p><slide>The corners are still detected when the image rotates (repeatability above 0.8), but the matching falls apart after 10–20°: the patches are compared pixel by pixel on a grid aligned with the image, so they are not rotation-invariant. This is why descriptors such as SIFT are used in practice.</slide></p>
+
+        <h3>SLAM with a factor graph (GTSAM)</h3>
+        <p><slide>A robot drives around a building and measures the range and bearing of 12 landmarks. Its odometry is noisy, so if we only integrate it (dead reckoning), the error keeps growing. I wrote the problem as a factor graph: the unknowns are the poses of the robot and the positions of the landmarks, linked by a prior, odometry factors, range-bearing factors and one loop closure. GTSAM then finds the most likely map and trajectory together.</slide></p>
+        <figure>
+          <img src="autonomy_slam.png" alt="Dead reckoning against SLAM optimization" style="max-width:100%">
+          <figcaption>Dead reckoning (left) and optimized trajectory and map with 95% confidence ellipses (right)</figcaption>
+        </figure>
+        <p><slide>With 55 factors, the maximum position error goes from 1.536 m with dead reckoning to 0.103 m after optimization. The ellipses grow along the bottom hallway, where the error accumulates, and shrink again on the way back, when the robot sees landmarks it already knows well and closes the loop.</slide></p>
+        <figure>
+          <img src="autonomy_slam_ranges.png" alt="SLAM results for sensor ranges of 3, 5 and 10 m" style="max-width:100%">
+          <figcaption>Optimized map for a sensor range of 3 m, 5 m and 10 m</figcaption>
+        </figure>
+        <table>
+          <thead>
+            <tr><th>Sensor range</th><th>Factors</th><th>Max position error</th><th>Final-pose std. (with / without loop closure)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>3 m</td><td>35</td><td>0.647 m</td><td>0.740 m / 1.377 m</td></tr>
+            <tr><td>5 m</td><td>55</td><td>0.103 m</td><td>0.167 m / 0.168 m</td></tr>
+            <tr><td>10 m</td><td>111</td><td>0.044 m</td><td>0.078 m / 0.078 m</td></tr>
+          </tbody>
+        </table>
+        <p><slide>The farther the sensor sees, the more landmarks link the poses together and the better the estimate. The loop closure only matters when the sensor range is short: at 3 m nothing else links the end of the path to its start, and the loop closure halves the final uncertainty. At 5 or 10 m, the robot sees the same landmarks at the beginning and at the end, which already closes the loop by itself.</slide></p>
+
+        <h2>Putting it together: autonomous exploration in simulation</h2>
+        <p><slide>All these algorithms were then run on a simulated TurtleBot3, in ROS 2 (Humble) with the Gazebo simulator. I wrote my own ROS 2 nodes in Python: a heading controller, then a navigator that reuses my A* planner and the spline smoothing from the first part, and follows the smoothed path with a trajectory-tracking controller. The robot does not know the map in advance: it builds it with its LiDAR while it drives (SLAM).</slide></p>
+        <figure>
+          <img src="autonomy_gazebo_world.jpg" alt="TurtleBot3 world in the Gazebo simulator" style="max-width:420px">
+          <figcaption>The simulated world in Gazebo: the small robot starts among the pillars</figcaption>
+        </figure>
+        <p><slide>Finally, a frontier-exploration node chooses the goals by itself: it looks for the frontiers between the area already mapped and the unknown, sends the closest one to the navigator, and starts again each time a goal is reached, until the whole room is mapped.</slide></p>
+        <figure class="wide">
+          <video controls muted loop playsinline preload="metadata" poster="autonomy_frontier_poster.jpg">
+            <source src="autonomy_frontier.mp4" type="video/mp4">
+            Your browser cannot play this video. <a href="autonomy_frontier.mp4">Download the video</a>.
+          </video>
+          <figcaption>Autonomous exploration in RViz: the map (white = free, black = walls, grey = unknown) is built as the robot moves from one frontier to the next (×3 speed)</figcaption>
+        </figure>
+        <p><slide>The robot plans around the pillars, reaches its goals one after the other and progressively uncovers the whole room, with no human input after the launch.</slide></p>
       </section>
     </main>
   </div>
